@@ -91,36 +91,35 @@ const App = () => {
 
 // Stylesheet to define various styles used in the app
 const styles = StyleSheet.create({
-  container: { 
+  container: { // Opening screen picture
     flex: 1, //fullscreen
   },
-  background: {
+  background: {// Opening screen picture
     flex: 1,
     justifyContent: 'flex-end', // Positions the text at the bottom of the screen
     alignItems: 'center', // Centers the text horizontally
     width: '100%',
     height: '100%',
   },
-  text: {
+  text: {// Click anywhere
     color: '#7d6236',
     fontSize: 15,
     marginBottom: 50,
-
   },
-  loginBackground: {
+  loginBackground: {// BgPicture
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
   },
-  loginContainer: {
+  loginContainer: {// invisible container
     width: '90%',
     padding: 20,
-    boderRdaius: 10,
+    borderRadius: 10,
     marginTop: 50,
   },
-  loginText:{
-    fontSize: 24,
+  loginText:{// Welcome, Pawple
+    fontSize: 25,
     fontWeight: 'bold',
     color: '#7d6236',
     marginBottom: 10,
@@ -128,7 +127,7 @@ const styles = StyleSheet.create({
     textAlign: 'center', // text itself is centered
     alignSelf: 'center', // Centers the text horizontally within its parent
   },
-  inputuser:{
+  inputuser:{// usercontainer
     width: '100%',
     padding: 12,
     borderColor: "#ccc",
@@ -137,7 +136,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#000',
   },
-  inputpass:{
+  inputpass:{// Passwordcontainer
     width: '100%',
     padding: 12,
     borderColor: "#ccc",
@@ -146,11 +145,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#000',
   },
-  forgotPassword:{
+  forgotPassword:{// Forgot Password
     fontSize: 12,
     marginLeft: 2,
   },
-  loginButton: {
+  loginButton: {// Login Button
     backgroundColor: '#a3c68c', 
     padding: 10,               
     borderRadius: 10,           
@@ -159,12 +158,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: '40%',
     alignSelf: 'center',
-    shadowColor: '#000', // Color of the shadow
-    shadowOffset: { width: 0, height: 2 }, // Offset of the shadow
-    shadowOpacity: 0.4, // Opacity of the shadow
-    shadowRadius: 3,  // How blurred the shadow is
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.4, 
+    shadowRadius: 3,  
   },
-  signUp:{
+  loginButtonText: {// Login ButtonText
+    color: '#fff',
+    fontSize: 16,  
+    fontWeight: 'bold', 
+  },
+  signUp:{// Don't have an account? Sign up here
     fontSize: 12,
     alignSelf: 'center',
     marginTop: 5,
