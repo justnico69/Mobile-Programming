@@ -26,6 +26,7 @@ const HomeScreen = ({ navigation }) => {
 const LoginScreen = ({navigation}) => {
   const handleLoginPress = () => {
     console.log('Login Button Pressed');
+  
   };
 
   return (
@@ -74,22 +75,56 @@ const LoginScreen = ({navigation}) => {
   );
 };
 
-const RegisterScreen = () => {
+// RegisterScreen component
+const RegisterScreen = ({navigation}) => {
   const handleRegPress = () => {
     console.log('Register Button Pressed');
-return(
-  <ImageBackround 
-  style = {styles.regBackground}
-  source = {require('./assets/catt3.jpg')}
-  resizeMode = 'cover'
-  >
-
-  </ImageBackround>
-
-
-    );
   };
+
+  return (
+    <ImageBackground 
+      style={styles.regBackground}
+      source={require('./assets/bgpbook.jpg')}
+      resizeMode='cover'
+    >
+      <View style={styles.loginContainer}>
+        <Text style={styles.loginText}>Let's get Started!</Text>
+
+        {/* Email INPUT HERE */}
+        <TextInput
+          style={[styles.input, { color: 'black' }]} // Correct color styling
+          placeholder="Email"
+          placeholderTextColor="#ccc"
+        />
+         {/* Username HERE */}
+        <TextInput
+          style={[styles.input, { color: 'black' }]} // Correct color styling
+          placeholder="Username"
+          placeholderTextColor="#ccc"
+        />
+
+        {/* PASSWORD INPUT HERE */}
+        <TextInput
+          style={[styles.input, { color: 'black' }]} // Correct color styling
+          placeholder="Password"
+          placeholderTextColor="#ccc"
+          secureTextEntry={true}
+        />
+         {/* CONFIRM PASSWORD INPUT HERE */}
+        <TextInput
+          style={[styles.input, { color: 'black' }]} // Correct color styling
+          placeholder="Confirm Password"
+          placeholderTextColor="#ccc"
+          secureTextEntry={true}
+        />
+      </View>
+    </ImageBackground>
+  );
 };
+
+    
+  
+
 
 //Ami
 // App component with Stack Navigator
