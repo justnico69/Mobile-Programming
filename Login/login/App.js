@@ -1,7 +1,7 @@
 // Nico
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import React from "react";
+import React, { useEffect } from "react";
 import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 // Create a Stack navigator by initializing one
@@ -9,16 +9,27 @@ const Stack = createStackNavigator();
 
 // HomeScreen component
 const HomeScreen = ({ navigation }) => {
+  
+  useEffect(() => {
+    // Set a 2-second timer to navigate to LoginScreen automatically
+    const timer = setTimeout(() => {
+      navigation.navigate('Login');
+    }, 2000); // 2000 milliseconds = 2 seconds
+
+    // Cleanup the timer when the component unmounts
+    return () => clearTimeout(timer);
+  }, [navigation]); // Empty dependency array to run only on mount
+
   return (
-    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Login')}>
+    <View style={styles.container}>
       <ImageBackground
-        source={require('./assets/catface.jpg')}
+        source={require('./assets/cat1.png')}
         style={styles.background}
         resizeMode="cover"
       >
-        <Text style={styles.text}>Click anywhere to continue</Text>
+        <Text style={styles.text}>Loading, please wait...</Text>
       </ImageBackground>
-    </TouchableOpacity>
+    </View>
   );
 };
 
