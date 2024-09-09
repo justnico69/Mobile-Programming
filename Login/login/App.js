@@ -12,7 +12,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Login')}>
       <ImageBackground
-        source={require('./assets/catface.png')}
+        source={require('./assets/catface.jpg')}
         style={styles.background}
         resizeMode="cover"
       >
@@ -67,10 +67,12 @@ const LoginScreen = ({navigation}) => {
         </TouchableOpacity>
 
         {/* Sign Up Button here */}
-        <Text style={styles.account}>Don't have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Register') }>
-          <Text style={styles.signUp}>Sign Up here!</Text>
-        </TouchableOpacity>
+        <View style={styles.row}>
+          <Text style={styles.loginaccount}>Don't have an account? </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.login}>Sign up here!</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ImageBackground>
   );
@@ -88,38 +90,52 @@ const RegisterScreen = ({navigation}) => {
       source={require('./assets/register.png')}
       resizeMode='cover'
     >
-      <View style={styles.loginContainer}>
-        <Text style={styles.loginText}>Let's get Started!</Text>
+      <View style={styles.regContainer}>
+        <Text style={styles.regText}>Let's get Started!</Text>
 
         {/* Email INPUT HERE */}
         <TextInput
-          style={[styles.input, { color: 'black' }]} // Correct color styling
+          style={[styles.inputreg, { color: 'black' }]} // Correct color styling
           placeholder="Email"
           placeholderTextColor="#ccc"
         />
          {/* Username HERE */}
         <TextInput
-          style={[styles.input, { color: 'black' }]} // Correct color styling
+          style={[styles.inputreg, { color: 'black' }]} // Correct color styling
           placeholder="Username"
           placeholderTextColor="#ccc"
         />
 
         {/* PASSWORD INPUT HERE */}
         <TextInput
-          style={[styles.input, { color: 'black' }]} // Correct color styling
+          style={[styles.inputreg, { color: 'black' }]} // Correct color styling
           placeholder="Password"
           placeholderTextColor="#ccc"
           secureTextEntry={true}
         />
          {/* CONFIRM PASSWORD INPUT HERE */}
-        <TextInput
-          style={[styles.input, { color: 'black' }]} // Correct color styling
+         <TextInput
+          style={[styles.inputreg, { color: 'black' }]} // Correct color styling
           placeholder="Confirm Password"
           placeholderTextColor="#ccc"
           secureTextEntry={true}
         />
+        {/* CREATE ACCOUNT BUTTON */}
+         <TouchableOpacity style={styles.regButton} onPress={() => console.log('Create button pressed')}>
+          <Text style={styles.regButtonText}>CREATE ACCOUNT</Text>
+        </TouchableOpacity>
+
+        {/* ALREADY HAVE AN ACCOUNT */}
+        <View style={styles.row}>
+          <Text style={styles.regaccount}>Already have an account? </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.reglogin}>Login here!</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
     </ImageBackground>
+    
   );
 };
 
@@ -177,37 +193,43 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 50,
   },
-  loginText: {
+  loginText: { //Pawpple
     fontFamily: 'Helvetica Neue',
     fontSize: 25,
     fontWeight: 'bold',
     color: '#7d6236',
-    marginBottom: 10,
-    marginTop: 100,
+    marginBottom: 6,
+    marginTop: 170,
     textAlign: 'center', 
     alignSelf: 'center', 
   },
   input: { 
-    width: '100%',
-    padding: 12,
-    borderColor: "#ccc",
     backgroundColor: "white",
-    borderRadius: 10,
-    marginBottom: 10,
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',  
+    marginTop: '4%',
+    marginBottom: 1,
+    width: '105%',
+    alignSelf: 'center',
+    borderColor: "#ccc",   
+    fontSize: 15,
+    fontWeight: 'bold',
     color: '#000',
   },
   forgotPassword: {
-    fontSize: 12,
-    marginLeft: 2,
+    fontSize: 13,
+    marginTop: '3%',
+    marginLeft: 1,
   },
   loginButton: {
     backgroundColor: '#a3c68c', 
-    padding: 10,               
+    padding: '5%',               
     borderRadius: 10,           
     alignItems: 'center',      
-    marginTop: 30,
+    marginTop: '25%',
     marginBottom: 10,
-    width: '40%',
+    width: '105%',
     alignSelf: 'center',
     shadowColor: '#000', 
     shadowOffset: { width: 0, height: 2 }, 
@@ -220,18 +242,90 @@ const styles = StyleSheet.create({
     fontSize: 16,  
     fontWeight: 'bold', 
   },
-  account: {
-    fontSize: 12,
+ loginaccount: {
+    fontSize: 14,
     alignSelf: 'center',
-    marginTop: 5,
+    marginTop: '10%',
+    marginLeft: 19,
     color: 'black',
   },
-  signUp: {
-    fontSize: 12,
+  login: {
+    fontSize: 14,
     alignSelf: 'center',
-    marginTop: 5,
+    marginTop: '35%',
     color: 'blue',
-  }
+  },
+
+  //REGISTRATION
+  regContainer: {
+    width: '90%',
+    padding: 20,
+    borderRadius: 10,
+  },
+  regText: {
+    fontFamily: 'Helvetica Neue',
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#7d6236',
+    marginTop: '10%',
+    marginBottom: '8%',
+    textAlign: 'center', 
+    alignSelf: 'center', 
+  },
+  inputreg: {
+    backgroundColor: "white",
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',  
+    marginTop: 16,
+    marginBottom: 1,
+    width: '113%',
+    alignSelf: 'center',
+    borderColor: "#ccc",   
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  regButton:{
+    backgroundColor: '#a3c68c', 
+    padding: '5%',               
+    borderRadius: 10,           
+    alignItems: 'center',      
+    marginTop: '35%',
+    marginBottom: 10,
+    width: '113%',
+    alignSelf: 'center',
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.4, 
+    shadowRadius: 3, 
+    elevation: 5,
+
+  },
+  regButtonText:{
+    color: '#fff',
+    fontSize: 16,  
+    fontWeight: 'bold', 
+  },
+  row: {
+    flexDirection: 'row', // Align items horizontally
+    alignItems: 'center', // Vertically center the text
+  },
+  regaccount: {
+    fontSize: 14,
+    alignSelf: 'center',
+    marginTop: '10%',
+    marginLeft: 20,
+    color: 'black',
+  },
+  reglogin: {
+    fontSize: 14,
+    alignSelf: 'center',
+    marginTop: '41%',
+    color: 'blue',
+  },
+
+
 });
 
 export default App;
