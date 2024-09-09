@@ -1,17 +1,18 @@
-//nico
-import { NavigationContainer } from '@react-navigation/native'; // Import for navigation
-import { createStackNavigator } from '@react-navigation/stack'; // Import for stack navigation
-import React from 'react';
-import { Alert, Button, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+// Nico
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import React from "react";
+import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-const Stack = createStackNavigator(); // Create a stack navigator
+// Create a Stack navigator by initializing one
+const Stack = createStackNavigator();
 
-// Home screen component
+// HomeScreen component
 const HomeScreen = ({ navigation }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Login')}>
       <ImageBackground
-        source={require('./assets/cat1.png')}  // Background image for the home screen
+        source={require('./assets/cat1.png')}
         style={styles.background}
         resizeMode="cover"
       >
@@ -21,114 +22,172 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-// Login screen component
-const LoginScreen = () => {
-  // Function to handle the login button press
+// LoginScreen component
+const LoginScreen = ({navigation}) => {
   const handleLoginPress = () => {
-    console.log('Button pressed'); // Log to the terminal when the button is pressed
-    Alert.alert('Login Button Pressed'); // Show an alert (you can remove this if you only want the console log)
+    console.log('Login Button Pressed');
+  
   };
 
   return (
     <ImageBackground
-      source={require('./assets/catt4.png')} // Background image for the login screen
-      style={styles.loginBackground} // Apply styles for background
+      source={require('./assets/catt4.png')}
+      style={styles.loginBackground}
       resizeMode="cover"
     >
       <View style={styles.loginContainer}>
         <Text style={styles.loginText}>Welcome, Pawple!</Text>
 
-        {/* Username input field */}
+        {/* USERNAME INPUT HERE */}
         <TextInput
-          style={styles.inputuser}
-          placeholder="hello@gmail.com"
-          placeholderTextColor="#a1a1a1"
+          style={[styles.input, { color: 'black' }]} // Correct color styling
+          placeholder="Username"
+          placeholderTextColor="#ccc"
         />
 
-        {/* Password input field */}
+        {/* PASSWORD INPUT HERE */}
         <TextInput
-          style={styles.inputpass}
+          style={[styles.input, { color: 'black' }]} // Correct color styling
           placeholder="Password"
-          placeholderTextColor="#a1a1a1"
-          secureTextEntry={true} // Hides the password
+          placeholderTextColor="#ccc"
+          secureTextEntry={true}
         />
 
-        {/* Forgot Password link */}
-        <TouchableOpacity onPress={() => Alert.alert('Forgot Password Pressed')}>
+        {/* Forgot Password here */}
+        <TouchableOpacity onPress={() => console.log('Forgot Password Pressed')}>
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
 
-        {/* Login Button with console log */}
+        {/* Login Button here */}
         <TouchableOpacity
-        style={styles.loginButton}  // Apply the custom styles for the button (changed)
-        onPress={handleLoginPress}  // Handle button press 
+          style={styles.loginButton}
+          onPress={handleLoginPress}
         >
-        <Text style={styles.loginButtonText}>LOGIN</Text> 
-        </TouchableOpacity> 
+          <Text style={styles.loginButtonText}>LOGIN</Text>
+        </TouchableOpacity>
 
-        {/* Sign Up Button */}
+        {/* Sign Up Button here */}
         <Text style={styles.account}>Don't have an account?</Text>
-        <TouchableOpacity onPress={() => Alert.alert('Sign Up Button Pressed')}>
-          <Text style={styles.signUp}>Sign up here</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Register') }>
+          <Text style={styles.signUp}>Sign Up here!</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
   );
 };
-//nico
 
-//ami to the end 
-// Main App component with navigation
+// RegisterScreen component
+const RegisterScreen = ({navigation}) => {
+  const handleRegPress = () => {
+    console.log('Register Button Pressed');
+  };
+
+  return (
+    <ImageBackground 
+      style={styles.regBackground}
+      source={require('./assets/register.png')}
+      resizeMode='cover'
+    >
+      <View style={styles.loginContainer}>
+        <Text style={styles.loginText}>Let's get Started!</Text>
+
+        {/* Email INPUT HERE */}
+        <TextInput
+          style={[styles.input, { color: 'black' }]} // Correct color styling
+          placeholder="Email"
+          placeholderTextColor="#ccc"
+        />
+         {/* Username HERE */}
+        <TextInput
+          style={[styles.input, { color: 'black' }]} // Correct color styling
+          placeholder="Username"
+          placeholderTextColor="#ccc"
+        />
+
+        {/* PASSWORD INPUT HERE */}
+        <TextInput
+          style={[styles.input, { color: 'black' }]} // Correct color styling
+          placeholder="Password"
+          placeholderTextColor="#ccc"
+          secureTextEntry={true}
+        />
+         {/* CONFIRM PASSWORD INPUT HERE */}
+        <TextInput
+          style={[styles.input, { color: 'black' }]} // Correct color styling
+          placeholder="Confirm Password"
+          placeholderTextColor="#ccc"
+          secureTextEntry={true}
+        />
+      </View>
+    </ImageBackground>
+  );
+};
+
+    
+  
+
+
+//Ami
+// App component with Stack Navigator
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
-// Stylesheet to define various styles used in the app
+// Stylesheet 
+
 const styles = StyleSheet.create({
-  container: { // Opening screen picture
-    flex: 1, //fullscreen
+  container: { 
+    flex: 1, 
   },
-  background: {// Opening screen picture
+  background: {
     flex: 1,
-    justifyContent: 'flex-end', // Positions the text at the bottom of the screen
-    alignItems: 'center', // Centers the text horizontally
+    justifyContent: 'flex-end', 
+    alignItems: 'center', 
     width: '100%',
     height: '100%',
   },
-  text: {// Click anywhere
+  text: {
     color: '#7d6236',
     fontSize: 15,
     marginBottom: 50,
   },
-  loginBackground: {// BgPicture
+  regBackground: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
   },
-  loginContainer: {// invisible container
+  loginBackground: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
+  loginContainer: {
     width: '90%',
     padding: 20,
     borderRadius: 10,
     marginTop: 50,
   },
-  loginText:{// Welcome, Pawple
+  loginText: {
+    fontFamily: 'Helvetica Neue',
     fontSize: 25,
     fontWeight: 'bold',
     color: '#7d6236',
     marginBottom: 10,
     marginTop: 100,
-    textAlign: 'center', // text itself is centered
-    alignSelf: 'center', // Centers the text horizontally within its parent
+    textAlign: 'center', 
+    alignSelf: 'center', 
   },
-  inputuser:{// usercontainer
+  input: { 
     width: '100%',
     padding: 12,
     borderColor: "#ccc",
@@ -137,20 +196,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#000',
   },
-  inputpass:{// Passwordcontainer
-    width: '100%',
-    padding: 12,
-    borderColor: "#ccc",
-    backgroundColor: "white",
-    borderRadius: 10,
-    marginBottom: 10,
-    color: '#000',
-  },
-  forgotPassword:{// Forgot Password
+  forgotPassword: {
     fontSize: 12,
     marginLeft: 2,
   },
-  loginButton: {// Login Button
+  loginButton: {
     backgroundColor: '#a3c68c', 
     padding: 10,               
     borderRadius: 10,           
@@ -162,26 +212,26 @@ const styles = StyleSheet.create({
     shadowColor: '#000', 
     shadowOffset: { width: 0, height: 2 }, 
     shadowOpacity: 0.4, 
-    shadowRadius: 3,  
+    shadowRadius: 3, 
+    elevation: 5,
   },
-  loginButtonText: {// Login ButtonText
+  loginButtonText: {
     color: '#fff',
     fontSize: 16,  
     fontWeight: 'bold', 
   },
-  account:{// Don't have an account? Sign up here
+  account: {
     fontSize: 12,
     alignSelf: 'center',
     marginTop: 5,
     color: 'black',
   },
-  signUp:{// Don't have an account? Sign up here
+  signUp: {
     fontSize: 12,
     alignSelf: 'center',
     marginTop: 5,
     color: 'blue',
   }
-
 });
 
 export default App;
