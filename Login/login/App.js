@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
 };
 
 // LoginScreen component
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
   const handleLoginPress = () => {
     console.log('Login Button Pressed');
   };
@@ -66,12 +66,29 @@ const LoginScreen = () => {
         </TouchableOpacity>
 
         {/* Sign Up Button here */}
-        <TouchableOpacity onPress={() => console.log('Sign Up Pressed')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Register') }>
           <Text style={styles.signUp}>Don't have an account? Sign Up here!</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
   );
+};
+
+const RegisterScreen = () => {
+  const handleRegPress = () => {
+    console.log('Register Button Pressed');
+return(
+  <ImageBackround 
+  style = {styles.regBackground}
+  source = {require('./assets/catt3.jpg')}
+  resizeMode = 'cover'
+  >
+
+  </ImageBackround>
+
+
+    );
+  };
 };
 
 //Ami
@@ -82,6 +99,7 @@ const App = () => {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -104,6 +122,12 @@ const styles = StyleSheet.create({
     color: '#7d6236',
     fontSize: 15,
     marginBottom: 50,
+  },
+  regBackground: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
   },
   loginBackground: {
     flex: 1,
