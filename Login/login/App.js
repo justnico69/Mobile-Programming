@@ -1,3 +1,4 @@
+
 // Nico
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -12,7 +13,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Login')}>
       <ImageBackground
-        source={require('./assets/catface.jpg')}
+        source={require('./assets/catface.png')}
         style={styles.background}
         resizeMode="cover"
       >
@@ -31,7 +32,7 @@ const LoginScreen = ({navigation}) => {
 
   return (
     <ImageBackground
-      source={require('./assets/catt3.jpg')}
+      source={require('./assets/cattotail.png')}
       style={styles.loginBackground}
       resizeMode="cover"
     >
@@ -67,8 +68,9 @@ const LoginScreen = ({navigation}) => {
         </TouchableOpacity>
 
         {/* Sign Up Button here */}
+        <Text style={styles.account}>Don't have an account?</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Register') }>
-          <Text style={styles.signUp}>Don't have an account? Sign Up here!</Text>
+          <Text style={styles.signUp}>Sign Up here!</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -84,7 +86,7 @@ const RegisterScreen = ({navigation}) => {
   return (
     <ImageBackground 
       style={styles.regBackground}
-      source={require('./assets/bgpbook.jpg')}
+      source={require('./assets/register.png')}
       resizeMode='cover'
     >
       <View style={styles.loginContainer}>
@@ -219,11 +221,17 @@ const styles = StyleSheet.create({
     fontSize: 16,  
     fontWeight: 'bold', 
   },
-  signUp: {
+  account: {
     fontSize: 12,
     alignSelf: 'center',
     marginTop: 5,
     color: 'black',
+  },
+  signUp: {
+    fontSize: 12,
+    alignSelf: 'center',
+    marginTop: 5,
+    color: 'blue',
   }
 });
 
