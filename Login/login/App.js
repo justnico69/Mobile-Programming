@@ -30,7 +30,7 @@ const LoginScreen = () => {
 
   return (
     <ImageBackground
-      source={require('./assets/catt3.jpg')}
+      source={require('./assets/catt4.png')}
       style={styles.loginBackground}
       resizeMode="cover"
     >
@@ -66,8 +66,9 @@ const LoginScreen = () => {
         </TouchableOpacity>
 
         {/* Sign Up Button here */}
+        <Text style={styles.account}>Don't have an account?</Text>
         <TouchableOpacity onPress={() => console.log('Sign Up Pressed')}>
-          <Text style={styles.signUp}>Don't have an account? Sign Up here!</Text>
+          <Text style={styles.signUp}>Sign up here!</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -160,11 +161,17 @@ const styles = StyleSheet.create({
     fontSize: 16,  
     fontWeight: 'bold', 
   },
-  signUp: {
+  account: {
     fontSize: 12,
     alignSelf: 'center',
     marginTop: 5,
     color: 'black',
+  },
+  signUp: {
+    fontSize: 12,
+    alignSelf: 'center',
+    marginTop: 5,
+    color: 'blue',
   }
 });
 
