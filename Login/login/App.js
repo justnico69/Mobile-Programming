@@ -1,8 +1,7 @@
-
 // Nico
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import React from "react";
+import React, { useEffect } from "react";
 import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 // Create a Stack navigator by initializing one
@@ -10,24 +9,40 @@ const Stack = createStackNavigator();
 
 // HomeScreen component
 const HomeScreen = ({ navigation }) => {
+  
+  useEffect(() => {
+    // Set a 2-second timer to navigate to LoginScreen automatically
+    const timer = setTimeout(() => {
+      navigation.replace('Login'); // Replace the HomeScreen to prevent navigating back to it
+    }, 2000); // 2000 milliseconds = 2 seconds
+
+    // Cleanup the timer when the component unmounts
+    return () => clearTimeout(timer);
+  }, [navigation]);
+
   return (
-    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Login')}>
+    <View style={styles.container}>
       <ImageBackground
         source={require('./assets/catface.png')}
         style={styles.background}
         resizeMode="cover"
       >
-        <Text style={styles.text}>Click anywhere to continue</Text>
+        <Text style={styles.text}>Loading, please wait...</Text>
       </ImageBackground>
-    </TouchableOpacity>
+    </View>
   );
 };
 
 // LoginScreen component
 const LoginScreen = ({navigation}) => {
+  useEffect(() => {
+  
+    // Cleanup the backHandler when the component unmounts
+    return () => backHandler.remove();
+  }, []);
+
   const handleLoginPress = () => {
     console.log('Login Button Pressed');
-  
   };
 
   return (
@@ -68,17 +83,20 @@ const LoginScreen = ({navigation}) => {
         </TouchableOpacity>
 
         {/* Sign Up Button here */}
-        <Text style={styles.account}>Don't have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Register') }>
-          <Text style={styles.signUp}>Sign Up here!</Text>
-        </TouchableOpacity>
+        <View style={styles.row}>
+          <Text style={styles.loginaccount}>Don't have an account? </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+            <Text style={styles.login}>Sign up here!</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ImageBackground>
   );
 };
 
-// RegisterScreen component
+// RegisterScreen component remains unchanged
 const RegisterScreen = ({navigation}) => {
+
   const handleRegPress = () => {
     console.log('Register Button Pressed');
   };
@@ -89,46 +107,53 @@ const RegisterScreen = ({navigation}) => {
       source={require('./assets/register.png')}
       resizeMode='cover'
     >
-      <View style={styles.loginContainer}>
-        <Text style={styles.loginText}>Let's get Started!</Text>
+      <View style={styles.regContainer}>
+        <Text style={styles.regText}>Let's get Started!</Text>
 
         {/* Email INPUT HERE */}
         <TextInput
-          style={[styles.input, { color: 'black' }]} // Correct color styling
+          style={[styles.inputreg, { color: 'black' }]} // Correct color styling
           placeholder="Email"
           placeholderTextColor="#ccc"
         />
          {/* Username HERE */}
         <TextInput
-          style={[styles.input, { color: 'black' }]} // Correct color styling
+          style={[styles.inputreg, { color: 'black' }]} // Correct color styling
           placeholder="Username"
           placeholderTextColor="#ccc"
         />
 
         {/* PASSWORD INPUT HERE */}
         <TextInput
-          style={[styles.input, { color: 'black' }]} // Correct color styling
+          style={[styles.inputreg, { color: 'black' }]} // Correct color styling
           placeholder="Password"
           placeholderTextColor="#ccc"
           secureTextEntry={true}
         />
          {/* CONFIRM PASSWORD INPUT HERE */}
-        <TextInput
-          style={[styles.input, { color: 'black' }]} // Correct color styling
+         <TextInput
+          style={[styles.inputreg, { color: 'black' }]} // Correct color styling
           placeholder="Confirm Password"
           placeholderTextColor="#ccc"
           secureTextEntry={true}
         />
+        {/* CREATE ACCOUNT BUTTON */}
+         <TouchableOpacity style={styles.regButton} onPress={() => console.log('Create button pressed')}>
+          <Text style={styles.regButtonText}>CREATE ACCOUNT</Text>
+        </TouchableOpacity>
+
+        {/* ALREADY HAVE AN ACCOUNT */}
+        <View style={styles.row}>
+          <Text style={styles.regaccount}>Already have an account? </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <Text style={styles.reglogin}>Login here!</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ImageBackground>
   );
 };
 
-    
-  
-
-
-//Ami
 // App component with Stack Navigator
 const App = () => {
   return (
@@ -179,36 +204,42 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   loginText: {
-    fontFamily: 'Helvetica Neue',
+    
     fontSize: 25,
     fontWeight: 'bold',
     color: '#7d6236',
-    marginBottom: 10,
-    marginTop: 100,
+    marginBottom: 6,
+    marginTop: 170,
     textAlign: 'center', 
     alignSelf: 'center', 
   },
   input: { 
-    width: '100%',
-    padding: 12,
-    borderColor: "#ccc",
     backgroundColor: "white",
-    borderRadius: 10,
-    marginBottom: 10,
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',  
+    marginTop: '4%',
+    marginBottom: 1,
+    width: '105%',
+    alignSelf: 'center',
+    borderColor: "#ccc",   
+    fontSize: 15,
+    fontWeight: 'bold',
     color: '#000',
   },
   forgotPassword: {
-    fontSize: 12,
-    marginLeft: 2,
+    fontSize: 13,
+    marginTop: '3%',
+    marginLeft: 1,
   },
   loginButton: {
     backgroundColor: '#a3c68c', 
-    padding: 10,               
+    padding: '5%',               
     borderRadius: 10,           
     alignItems: 'center',      
-    marginTop: 30,
+    marginTop: '25%',
     marginBottom: 10,
-    width: '40%',
+    width: '105%',
     alignSelf: 'center',
     shadowColor: '#000', 
     shadowOffset: { width: 0, height: 2 }, 
@@ -221,18 +252,83 @@ const styles = StyleSheet.create({
     fontSize: 16,  
     fontWeight: 'bold', 
   },
-  account: {
-    fontSize: 12,
+ loginaccount: {
+    fontSize: 14,
     alignSelf: 'center',
-    marginTop: 5,
+    marginTop: '10%',
+    marginLeft: 19,
     color: 'black',
   },
-  signUp: {
-    fontSize: 12,
+  login: {
+    fontSize: 14,
     alignSelf: 'center',
-    marginTop: 5,
+    marginTop: '35%',
     color: 'blue',
-  }
+  },
+
+  // REGISTRATION
+  regContainer: {
+    width: '90%',
+    padding: 20,
+    borderRadius: 10,
+  },
+  regText: {
+   
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#7d6236',
+    marginTop: '10%',
+    marginBottom: '8%',
+    textAlign: 'center', 
+    alignSelf: 'center', 
+  },
+  inputreg: {
+    backgroundColor: "white",
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',  
+    marginTop: 16,
+    marginBottom: 1,
+    width: '113%',
+    alignSelf: 'center',
+    borderColor: "#ccc",
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  regButton: {
+    backgroundColor: '#a3c68c', 
+    padding: '5%',              
+    borderRadius: 10,           
+    alignItems: 'center',      
+    marginTop: '17%',
+    marginBottom: 10,
+    width: '113%',
+    alignSelf: 'center',
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.4, 
+    shadowRadius: 3, 
+    elevation: 5, 
+  },
+  regButtonText: {
+    color: '#fff',
+    fontSize: 16,  
+    fontWeight: 'bold', 
+  },
+  regaccount: {
+    fontSize: 14,
+    alignSelf: 'center',
+    marginTop: '10%',
+    marginLeft: 40,
+    color: 'black',
+  },
+  reglogin: {
+    fontSize: 14,
+    alignSelf: 'center',
+    marginTop: '35%',
+    color: 'blue',
+  },
 });
 
 export default App;
