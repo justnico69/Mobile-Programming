@@ -16,9 +16,10 @@ const HomeScreen = ({ navigation }) => {
       navigation.replace('Login'); // Replace the HomeScreen to prevent navigating back to it
     }, 2000); // 2000 milliseconds = 2 seconds
 
-    // Cleanup the timer when the component unmounts
+
+    
     return () => clearTimeout(timer);
-  }, [navigation]);
+  }, [navigation]); 
 
   return (
     <View style={styles.container}>
@@ -35,14 +36,9 @@ const HomeScreen = ({ navigation }) => {
 
 // LoginScreen component
 const LoginScreen = ({navigation}) => {
-  useEffect(() => {
-  
-    // Cleanup the backHandler when the component unmounts
-    return () => backHandler.remove();
-  }, []);
-
   const handleLoginPress = () => {
     console.log('Login Button Pressed');
+  
   };
 
   return (
@@ -86,7 +82,7 @@ const LoginScreen = ({navigation}) => {
         <View style={styles.row}>
           <Text style={styles.loginaccount}>Don't have an account? </Text>
           <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-            <Text style={styles.login}>Sign up here!</Text>
+          <Text style={styles.login}>Sign up here!</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -94,9 +90,8 @@ const LoginScreen = ({navigation}) => {
   );
 };
 
-// RegisterScreen component remains unchanged
+// RegisterScreen component
 const RegisterScreen = ({navigation}) => {
-
   const handleRegPress = () => {
     console.log('Register Button Pressed');
   };
@@ -146,14 +141,21 @@ const RegisterScreen = ({navigation}) => {
         <View style={styles.row}>
           <Text style={styles.regaccount}>Already have an account? </Text>
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-            <Text style={styles.reglogin}>Login here!</Text>
+          <Text style={styles.reglogin}>Login here!</Text>
           </TouchableOpacity>
         </View>
+
       </View>
     </ImageBackground>
+    
   );
 };
 
+    
+  
+
+
+//Ami
 // App component with Stack Navigator
 const App = () => {
   return (
@@ -203,7 +205,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 50,
   },
-  loginText: {
+  loginText: { //Pawpple
     
     fontSize: 25,
     fontWeight: 'bold',
@@ -266,14 +268,14 @@ const styles = StyleSheet.create({
     color: 'blue',
   },
 
-  // REGISTRATION
+  //REGISTRATION
   regContainer: {
     width: '90%',
     padding: 20,
     borderRadius: 10,
   },
   regText: {
-   
+  
     fontSize: 30,
     fontWeight: 'bold',
     color: '#7d6236',
@@ -291,17 +293,17 @@ const styles = StyleSheet.create({
     marginBottom: 1,
     width: '113%',
     alignSelf: 'center',
-    borderColor: "#ccc",
+    borderColor: "#ccc",   
     fontSize: 15,
     fontWeight: 'bold',
     color: '#000',
   },
-  regButton: {
+  regButton:{
     backgroundColor: '#a3c68c', 
-    padding: '5%',              
+    padding: '5%',               
     borderRadius: 10,           
     alignItems: 'center',      
-    marginTop: '17%',
+    marginTop: '35%',
     marginBottom: 10,
     width: '113%',
     alignSelf: 'center',
@@ -309,26 +311,33 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 }, 
     shadowOpacity: 0.4, 
     shadowRadius: 3, 
-    elevation: 5, 
+    elevation: 5,
+
   },
-  regButtonText: {
+  regButtonText:{
     color: '#fff',
     fontSize: 16,  
     fontWeight: 'bold', 
+  },
+  row: {
+    flexDirection: 'row', // Align items horizontally
+    alignItems: 'center', // Vertically center the text
   },
   regaccount: {
     fontSize: 14,
     alignSelf: 'center',
     marginTop: '10%',
-    marginLeft: 40,
+    marginLeft: 20,
     color: 'black',
   },
   reglogin: {
     fontSize: 14,
     alignSelf: 'center',
-    marginTop: '35%',
+    marginTop: '41%',
     color: 'blue',
   },
+
+
 });
 
 export default App;
